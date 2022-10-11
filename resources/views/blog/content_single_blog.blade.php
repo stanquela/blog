@@ -13,6 +13,7 @@
             <a href=" {{ route('showBlog', $data->id - 1) }} ">Previous blog...</a>
             <a href=" {{ route('showBlog', $data->id + 1) }} ">Next blog...</a>
     </div>
+    <a href="{{ route('editBlog', $data->id) }}">EDIT BLOG</a>
     <form action=" {{ route('deleteBlog', $data->id) }} " method="POST">
         <div>
             <input class="btn btn-danger" type="submit" value="Delete">

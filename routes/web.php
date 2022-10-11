@@ -28,5 +28,10 @@ Route::post('/add-blog', [PagesController::class, 'addBlog'])->name('addBlog');
 
 Route::get('/show-blog/{id}', [PagesController::class, 'showBlog'])->name('showBlog');
 
+Route::get('edit-blog/{id}', [PagesController::class, 'editBlog'])->name('editBlog');   //get the data to edit
+Route::post('edit-blog-save/{id}', [PagesController::class, 'editBlogSave'])->name('editBlogSave'); //save the data that was edited
+
 Route::delete('/delete-blog/{id}', [PagesController::class, 'deleteBlog'])->name('deleteBlog');
+
+
 

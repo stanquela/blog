@@ -53,10 +53,29 @@ class PagesController extends Controller
         //return $data;
         return view('blog.content_single_blog')->with('data', $data); //data passed this way can be manipulated in a view, also compact()
     }
+    
+    public function editBlog($id){
+        $data = Blog::find($id);
+        return  view('blog.edit_content')->with('data',$data);    
+    }
+
+    public function editBlogSave($id, Request $request){
+        $title = $request->input('title');     
+        $text = $request->input('text');   
+        
+        $data = Blog::find($id);
+        $data->title = $title;       
+        $data->text = $text;
+
+        $data->save();
+        
+        Session::flash('edit_message', 'You successfully edited a BLOG POST!');
+        return redirect()->back();//route('blog');
+    }
     public function deleteBlog($id){
         $data = Blog::find($id);
         $data->delete();
-        Session::flash('delete_message', 'You just just deleted a BLOG POST!');
+        Session::flash('delete_message', 'You just deleted a BLOG POST!');
         // return $data;
         return redirect()->route('blog');
     }
