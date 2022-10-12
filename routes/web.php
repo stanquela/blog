@@ -34,4 +34,6 @@ Route::post('edit-blog-save/{id}', [PagesController::class, 'editBlogSave'])->na
 Route::delete('/delete-blog/{id}', [PagesController::class, 'deleteBlog'])->name('deleteBlog');
 
 
+Auth::routes();
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
