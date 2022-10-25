@@ -1,3 +1,7 @@
+<!-- This layout was made before introducing the AUTH mechanism, it isn't really needed anymore, it is left here only for testing purpouse -->
+
+
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -33,3 +37,4 @@
     </body>
 
 </html>
+

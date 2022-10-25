@@ -13,7 +13,7 @@ class PagesController extends Controller
         $title = "Homepage";
         $description = "This is homepage";
         return view('welcome.welcome')->with('title', $title)->with('description', $description);
-        WP ONLY REFERS TO WEB PAGE
+        WP ONLY REFERS TO WEB PAGE, IT'S MADE UP, IT HAS NO SPECIAL MEANING!
         */
         $wp['title'] = "Homepage";
         $wp['description'] = "This is homepage";  
@@ -21,9 +21,9 @@ class PagesController extends Controller
              
         return view('welcome.welcome'/*,compact('wp')*/);
     }
-    public function testingId($id){
+    /*public function testingId($id){
         return $id;
-    }
+    }*/
     public function content(){
         
         //Passing data to the page through model, listing all blogs.

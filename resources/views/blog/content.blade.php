@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts/app')
 @section('title', 'BLOG')
 @section('content')
 <body>
@@ -7,7 +7,9 @@
 </div>
 <center>
         @if(Session::has('delete_message'))
-            <p class="alert alert-info">{{ Session::get('delete_message') }}<p>
+            <p class="alert alert-info">{{ Session::get('delete_message') }}</p>
+        @elseif(Session::has('message'))
+            <p class="alert alert-danger">{{Session::get('message')}}</p>
         @endif  
 </center>
 @foreach($wp['blog_data'] as $blog)

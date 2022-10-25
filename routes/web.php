@@ -18,22 +18,34 @@ use App\Http\Controllers\PagesController;
     return view('welcome/welcome');
 });*/
 
-Route::get('/', [PagesController::class, 'index'])->name('index');
-Route::get('/blogs/{id}', [PagesController::class, 'testingId']);
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
+//Route::get('/blogs/{id}', [PagesController::class, 'testingId']);
 
 Route::get('/blog', [PagesController::class, 'content'])->name('blog');
-Route::get('/create-blog', [PagesController::class, 'createBlog'])->name('createBlog');
 
-Route::post('/add-blog', [PagesController::class, 'addBlog'])->name('addBlog');
 
 Route::get('/show-blog/{id}', [PagesController::class, 'showBlog'])->name('showBlog');
 
-Route::get('edit-blog/{id}', [PagesController::class, 'editBlog'])->name('editBlog');   //get the data to edit
-Route::post('edit-blog-save/{id}', [PagesController::class, 'editBlogSave'])->name('editBlogSave'); //save the data that was edited
 
-Route::delete('/delete-blog/{id}', [PagesController::class, 'deleteBlog'])->name('deleteBlog');
 
 
 Auth::routes();
+//logged user
+Route::prefix('logged_user')->middleware('auth')->group(function(){
+    Route::get('/create-blog', [PagesController::class, 'createBlog'])->name('createBlog');
+    Route::post('/add-blog', [PagesController::class, 'addBlog'])->name('addBlog');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('edit-blog/{id}', [PagesController::class, 'editBlog'])->name('editBlog');   //get the data to edit
+    Route::post('edit-blog-save/{id}', [PagesController::class, 'editBlogSave'])->name('editBlogSave'); //save the data that was edited
+    //Commented out because not admin
+    //Route::delete('/delete-blog/{id}', [PagesController::class, 'deleteBlog'])->name('deleteBlog');
+});
+
+//admin
+Route::prefix('admin')->middleware(['isAdmin'])->group(function(){
+    Route::delete('/delete-blog/{id}', [PagesController::class, 'deleteBlog'])->name('deleteBlog');
+});
+
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
